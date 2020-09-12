@@ -7,11 +7,16 @@ ORDER BY birthDate DESC;
 SELECT * FROM Users
 ORDER By BirthDate ASC;
 -- 4. Колко юзъра са регистрирани с мейли от abv и колко от gmail и колко с различни от;
-SELECT username, email FROM users
-WHERE email Like '%@abv%' or '%gmail%' NOT LIKE '%@abv%' or '%gmail%'
+SELECT count(*)  FROM users
+WHERE email LIKE '%gmail.com'
+union all
+SELECT count(*)  FROM users
+WHERE email LIKE '%abv.bg'
+union all
+SELECT count(*) FROM users
+WHERE email NOT LIKE '%abv.bg' AND email NOT LIKE '%gmail.com'
 
-SELECT * FROM users
-WHERE email NOT Like '%@abv%' or '%gmail%'
+
 -- 5. Кои юзъри са banned;
 SELECT * FROM users
 WHERE isBanned = 0;
